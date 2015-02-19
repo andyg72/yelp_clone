@@ -48,7 +48,7 @@ describe ReviewsHelper, type: :helper do
     it 'shows more then a week' do
       review = Review.create(thoughts: 'Great',rating: 1)
       Timecop.travel(60*60*24*7*3)
-      expect(helper.time_since(review)).to eq review.created_at
+      expect(helper.time_since(review)).to eq review.created_at.strftime("%-d-%-m-%Y")
       Timecop.return
     end
 
