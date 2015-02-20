@@ -1,6 +1,6 @@
 - if @restaurants.any?
   -@restaurants.each do |restaurant|
-    = link_to restaurant.name, restaurant_path(restaurant)
+    %p= link_to restaurant.name, restaurant_path(restaurant)
     - if current_user == restaurant.user
       = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant)
       = link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete
@@ -16,9 +16,11 @@
           %li
             = review.thoughts
             %strong= "#{review.rating} /5"
+            = pluralize review.endorsements.count, 'endorsement'
             = "posted #{time_since(review)}"
             - if current_user == review.user
               = link_to "Delete review", review_path(review), method: :delete
+            = link_to "Endorse this #{restaurant.name} review", review_endorsements_path(review), method: :post
 
 
     -else
