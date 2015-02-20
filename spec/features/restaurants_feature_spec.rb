@@ -38,6 +38,16 @@ feature 'restaurants' do
       expect(current_path).to eq '/restaurants'
     end
 
+    scenario 'uploading a photo of the restaurant' do
+      sign_up('test')
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'KFC'
+      attach_file 'kfc', '../kfc.jpg'
+      click_button 'Create Restaurant'
+      expect(page.find('.KFC-image')[src]).to include('kfc.jpg')
+    end
+
     context 'an invalid restaurant' do
 
       it 'does not let you submit a name that is too short' do
