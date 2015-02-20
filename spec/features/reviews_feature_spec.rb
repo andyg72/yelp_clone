@@ -36,7 +36,7 @@ feature 'reviewing' do
     expect(page).to have_content('You can only leave one review per restaurant')
   end
 
-  scenario 'users can delete their own reviews' do
+  scenario 'users can see link to delete their own reviews' do
     sign_up('test')
     add_restaurant('KFC')
     leave_review('KFC', "so, so", "3")
