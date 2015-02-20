@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'paperclip'
 
 group :development, :test do
   gem 'byebug'
