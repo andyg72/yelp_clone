@@ -16,11 +16,13 @@
           %li
             = review.thoughts
             %strong= "#{review.rating} /5"
-            = pluralize review.endorsements.count, 'endorsement'
             = "posted #{time_since(review)}"
             - if current_user == review.user
               = link_to "Delete review", review_path(review), method: :delete
-            = link_to "Endorse this #{restaurant.name} review", review_endorsements_path(review), method: :post
+            = link_to "Endorse this #{restaurant.name} review", review_endorsements_path(review), class: 'endorsements-link'
+            %span.endorsements_count= review.endorsements.count
+            = 'endorsement'.pluralize review.endorsements.count 
+
 
 
     -else
