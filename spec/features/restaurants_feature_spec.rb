@@ -43,9 +43,18 @@ feature 'restaurants' do
       visit '/restaurants'
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'KFC'
-      attach_file 'kfc', '../kfc.jpg'
+      attach_file 'image', Rails.root + 'spec/kfc.jpg'
       click_button 'Create Restaurant'
-      expect(page.find('.KFC-image')[src]).to include('kfc.jpg')
+      expect(page.find('#KFC-image')['src']).to include('kfc.jpg')
+    end
+
+    scenario 'not uploading an image of the restaurant uses default' do
+      sign_up('test')
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'KFC'
+      click_button 'Create Restaurant'
+      expect(page.find('#KFC-image')['src']).to include('missing.png')
     end
 
     context 'an invalid restaurant' do

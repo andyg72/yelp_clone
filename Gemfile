@@ -14,6 +14,7 @@ gem 'haml'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'paperclip'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'byebug'
